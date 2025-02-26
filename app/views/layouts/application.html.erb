@@ -11,6 +11,23 @@
   </head>
 
   <body>
-    <%= yield %>
+    <nav>
+      <a href="/boards">Bulletin Board</a>
+    </nav>
+
+    <hr>
+    <% if notice.present? %>
+      <div>
+        <%= notice %>
+      </div>
+    <% end %>
+
+    <% if alert.present? %>
+      <div>
+        <%= alert %>
+      </div>
+    <% end %>
+    
+      <%= yield %>
   </body>
 </html>

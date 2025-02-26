@@ -43,6 +43,9 @@
 </form>
 
 <hr>
+
+<h2>Active posts</h2>
+
 <table border="1">
   <tr>
     <th>Title</th>
@@ -51,15 +54,34 @@
     <th>Expires on</th>
   </tr>
   
-    <%.each do |a_post|%>
+  <% @the_board.posts.select { |a_post| a_post.expires_on >= Date.today }.each do |a_post| %>
     <tr>
       <td><%= a_post.title %></td>
-      <td><%= a_post.title %></td>
-      <td><%= a_post.title %></td>
-      <td><%= a_post.title %></td>
+      <td><%= a_post.body %></td>
+      <td><%= a_post.created_at %></td>
+      <td><%= a_post.expires_on %></td>
     </tr>
+    <%end%>
   </table>
 
 <hr>
 
 
+<h2>Expired posts</h2>
+<table border="1">
+  <tr>
+    <th>Title</th>
+    <th>Body</th>
+    <th>Posted on</th>
+    <th>Expires on</th>
+  </tr>
+  
+  <% @the_board.posts.select { |a_post| a_post.expires_on> Date.today }.each do |a_post| %>
+    <tr>
+      <td><%= a_post.title %></td>
+      <td><%= a_post.body %></td>
+      <td><%= a_post.created_at %></td>
+      <td><%= a_post.expires_on %></td>
+    </tr>
+    <%end%>
+  </table>

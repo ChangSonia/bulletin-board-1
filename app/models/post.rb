@@ -12,4 +12,5 @@
 #
 class Post < ApplicationRecord
   belongs_to :board, foreign_key: "board_id"
+  validates :body, presence: true
 end
